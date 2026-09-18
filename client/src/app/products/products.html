@@ -1,10 +1,8 @@
-<h1>Products</h1>
+<p style="color:red">THIS IS THE REAL PRODUCTS TEMPLATE</p>
 
-<a routerLink="/add-product">Add New Product</a>
+<h2>Products</h2>
 
-<br><br>
-
-<table border="1" cellpadding="10">
+<table>
   <thead>
     <tr>
       <th>ID</th>
@@ -23,23 +21,13 @@
       <td>{{ product.name }}</td>
       <td>{{ product.type }}</td>
       <td>{{ product.description }}</td>
-      <td>${{ product.price | number:'1.2-2' }}</td>
+      <td>{{ product.price | number:'1.2-2' }}</td>
       <td>{{ product.units }}</td>
 
-```
-  <td>
-    <a [routerLink]="['/update-product', product._id]">
-      Edit
-    </a>
-
-    &nbsp;
-
-    <button (click)="deleteProduct(product._id)">
-      Delete
-    </button>
-  </td>
-</tr>
-```
-
+      <td>
+        <a [routerLink]="['/update-product', product._id]">Edit</a>
+        <button (click)="deleteProduct(product._id)">Delete</button>
+      </td>
+    </tr>
   </tbody>
 </table>

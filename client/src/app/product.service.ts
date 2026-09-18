@@ -1,39 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-export interface Product {
-  _id?: string;
-  id: number;
-  name: string;
-  type: string;
-  description: string;
-  price: number;
-  units: number;
-}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private apiUrl = 'http://localhost:3000/products';
+  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
+  getProducts() {
+    return this.http.get(`${this.apiUrl}/products`);
   }
 
-  addProduct(product: Product): Observable<any> {
-    return this.http.post(this.apiUrl, product);
+  getProduct(id: string) {
+    return this.http.get(`${this.apiUrl}/products/${id}`);
   }
 
-  updateProduct(id: string, product: Product): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, product);
+  addProduct(product: any) {
+    return this.http.post(`${this.apiUrl}/products`, product);
   }
 
-  deleteProduct(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  updateProduct(id: string, product: any) {
+    return this.http.put(`${this.apiUrl}/products/${id}`, product);
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.apiUrl}/products/${id}`);
   }
 }

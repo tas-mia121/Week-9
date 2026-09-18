@@ -1,71 +1,24 @@
-<h1>Update Product</h1>
+<h2>Update Product</h2>
 
-<form (ngSubmit)="updateProduct()">
+<form *ngIf="product" (ngSubmit)="updateProduct()">
 
-  <p>
-    <label>ID:</label>
-    <input
-      type="number"
-      name="id"
-      [(ngModel)]="product.id"
-      required
-    >
-  </p>
+  <label>ID:</label>
+  <input type="number" [(ngModel)]="product.id" name="id" />
 
-  <p>
-    <label>Name:</label>
-    <input
-      type="text"
-      name="name"
-      maxlength="50"
-      [(ngModel)]="product.name"
-      required
-    >
-  </p>
+  <label>Name:</label>
+  <input type="text" [(ngModel)]="product.name" name="name" />
 
-  <p>
-    <label>Type:</label>
-    <input
-      type="text"
-      name="type"
-      [(ngModel)]="product.type"
-      required
-    >
-  </p>
+  <label>Type:</label>
+  <input type="text" [(ngModel)]="product.type" name="type" />
 
-  <p>
-    <label>Description:</label>
-    <textarea
-      name="description"
-      maxlength="255"
-      [(ngModel)]="product.description"
-      required
-    ></textarea>
-  </p>
+  <label>Description:</label>
+  <textarea [(ngModel)]="product.description" name="description"></textarea>
 
-  <p>
-    <label>Price:</label>
-    <input
-      type="number"
-      name="price"
-      step="0.01"
-      [(ngModel)]="product.price"
-      required
-    >
-  </p>
+  <label>Price:</label>
+  <input type="number" [(ngModel)]="product.price" name="price" />
 
-  <p>
-    <label>Units:</label>
-    <input
-      type="number"
-      name="units"
-      [(ngModel)]="product.units"
-      required
-    >
-  </p>
+  <label>Units:</label>
+  <input type="number" [(ngModel)]="product.units" name="units" />
 
-  <button type="submit">
-    Update Product
-  </button>
-
+  <button type="submit">Update Product</button>
 </form>

@@ -1,49 +1,31 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Product, ProductService } from '../product.service';
+import { Router, RouterModule } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './add-product.html'
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './add-product.html',
+  styleUrls: ['./add-product.css']
 })
 export class AddProductComponent {
 
-  product: Product = {
-    id: 0,
+  product: any = {
     name: '',
-    type: '',
     description: '',
     price: 0,
     units: 0
   };
 
-  constructor(
-    private productService: ProductService,
-    private router: Router
-  ) {}
+  constructor(private service: ProductService, private router: Router) {}
 
-  addProduct(): void {
-
-    this.productService.addProduct(this.product).subscribe({
-      next: () => {
-        alert('Product added successfully');
-
-        this.router.navigate(['/products']);
-      },
-
-      error: (error) => {
-
-        console.error(error);
-
-        if (error.status === 409) {
-          alert('A product with this ID already exists.');
-        } else {
-          alert('Failed to add product.');
-        }
-      }
+  addProduct() {
+    this.service.addProduct(this.product).subscribe({
+      next: () => this.router.navigate(['/products']),
+      error: (err) => console.error(err)
     });
   }
 }
