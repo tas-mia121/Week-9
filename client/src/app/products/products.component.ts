@@ -17,6 +17,7 @@ export class ProductsComponent {
   constructor(private service: ProductService) {}
 
   ngOnInit() {
+    console.log("ProductsComponent LOADED");
     this.loadProducts();
   }
 
