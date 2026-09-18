@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -19,13 +19,15 @@ export class UpdateProductComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ProductService
+    private service: ProductService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id') || '';
     this.service.getProduct(this.id).subscribe((data: any) => {
       this.product = data;
+      this.cdr.markForCheck();
     });
   }
 
