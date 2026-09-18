@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductService } from '../product.service';
@@ -14,7 +14,10 @@ export class ProductsComponent {
 
   products: any[] = [];
 
-  constructor(private service: ProductService) {}
+  constructor(
+    private service: ProductService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     console.log("ProductsComponent LOADED");
@@ -24,6 +27,7 @@ export class ProductsComponent {
   loadProducts() {
     this.service.getProducts().subscribe((data: any) => {
       this.products = data;
+      this.cdr.markForCheck();
     });
   }
 
