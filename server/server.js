@@ -18,7 +18,7 @@ async function getCollection() {
         console.log("🔥 Connected to MongoDB", uri);
     }
     const db = client.db("mydb");
-    return db.collection("products");
+    return db.collection("product");
 }
 
 /* GET ALL PRODUCTS */
